@@ -69,6 +69,46 @@ print("Précision du modèle :", accuracy)
 print("\nRapport de classification :\n", classification_rep)
 print("\nMatrice de confusion :\n", conf_matrix)
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Visualisation de la distribution des variables numériques
+plt.figure(figsize=(12, 6))
+sns.histplot(df['Age'], kde=True, bins=30, color='skyblue')
+plt.title('Distribution de l\'âge des passagers')
+plt.xlabel('Âge')
+plt.ylabel('Fréquence')
+plt.show()
+
+plt.figure(figsize=(12, 6))
+sns.histplot(df['Fare'], kde=True, bins=30, color='salmon')
+plt.title('Distribution du tarif des passagers')
+plt.xlabel('Tarif')
+plt.ylabel('Fréquence')
+plt.show()
+
+# Visualisation des variables catégorielles
+plt.figure(figsize=(12, 6))
+sns.countplot(x='Survived', data=df, palette='Set2')
+plt.title('Répartition des passagers selon la survie')
+plt.xlabel('Survécu (0 = non, 1 = oui)')
+plt.ylabel('Nombre de passagers')
+plt.show()
+
+plt.figure(figsize=(12, 6))
+sns.countplot(x='Pclass', data=df, hue='Survived', palette='Set1')
+plt.title('Répartition des passagers par classe et survie')
+plt.xlabel('Classe')
+plt.ylabel('Nombre de passagers')
+plt.show()
+
+plt.figure(figsize=(12, 6))
+sns.countplot(x='Sex', data=df, hue='Survived', palette='Set1')
+plt.title('Répartition des passagers par sexe et survie')
+plt.xlabel('Sexe')
+plt.ylabel('Nombre de passagers')
+plt.show()
+
 # Importation de la fonction pour visualiser l'arbre
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 import matplotlib.pyplot as plt
